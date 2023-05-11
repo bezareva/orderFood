@@ -1,0 +1,11 @@
+<html>
+<head>
+    <title>Item Details</title>
+    <link href="{{ url_for('static', path='/style.css') }}" rel="stylesheet">
+</head>
+<body>
+    {% for person_id in data %}
+        <a class="test" href="/osoba/{{person_id}}">{{data[person_id]}}</a>
+    {% endfor %}
+</body>
+</html>

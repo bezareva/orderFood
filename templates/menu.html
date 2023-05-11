@@ -1,0 +1,38 @@
+<html>
+<head>
+    <title>Item Details</title>
+    <link href="{{ url_for('static', path='/style.css') }}" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <script src='/static/script.js'></script>
+</head>
+<body>
+
+<section class = 'header'>
+    <nav>
+        <div class="nav-links" id="navLinks">
+            <ul>
+                <li><a href="/">Home</a></li>
+                {% for category in categories %}
+                    <li><a href="/menu/{{category}}">{{category}}</a></li>
+                {% endfor %}
+                <a href="/cart"><i  class="fa fa-shopping-cart fa-2x"></i></a>
+            </ul>
+        </div>
+    </nav>
+
+<div class="menu-st">
+    <table>
+        {%for item in submenues %}
+                <tr>
+                    <td><span>{{item['name']}}</span></td>
+                    <td><span>{{item['price']}} $</span></td>
+                    <td><span class = "btn" onclick="funMin('{{item.id}}')">-</span></td>
+                    <td><input type="number" class="count" id="{{item['id']}}" name="count" value="0"></td>
+                    <td><span class="btn" onclick="funPlus('{{item.id}}')">+</span></td>
+                 </tr>
+        {% endfor %}
+    </table>
+</div>
+</section>
+</body>
+</html>

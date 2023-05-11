@@ -1,0 +1,26 @@
+<html>
+<head>
+    <title>Item Details</title>
+    <link href="{{ url_for('static', path='/style.css') }}" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+</head>
+<body>
+<section class = 'header'>
+    <nav>
+        <div class="nav-links" id="navLinks">
+            <ul>
+                <li><a href="/">Home</a></li>
+                {% for category in categories %}
+                    <li><a href="/menu/{{category}}">{{category}}</a></li>
+                {% endfor %}
+                <a href="/cart"><i class="fa fa-shopping-cart fa-2x"></i></a>
+            </ul>
+        </div>
+    </nav>
+<div class="text-box">
+    <h1>Welcome to your favourite pizza place!</h1>
+    <p>Place your order and fresh pizza will be on your doorstep in 30min.</p>
+</div>
+</section>
+</body>
+</html>

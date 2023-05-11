@@ -1,0 +1,81 @@
+<html>
+<head>
+    <title>Item Details</title>
+    <link href="{{ url_for('static', path='/style.css') }}" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+</head>
+<body>
+<section class = 'header'>
+    <nav>
+        <div class="nav-links" id="navLinks">
+            <ul>
+                <li><a href="/">Home</a></li>
+                {% for category in categories %}
+                    <li><a href="/menu/{{category}}">{{category}}</a></li>
+                {% endfor %}
+                <a href="/cart"><i class="fa fa-shopping-cart fa-2x"></i></a>
+            </ul>
+        </div>
+    </nav>
+
+<div class="menu-st" id="order">
+    <h1>Your cart</h1>
+    <table>
+        <tr>
+            <th>Item</th>
+            <th>Price</th>
+            <th>Quantity</th>
+        </tr>
+        {%for item in cart%}
+            <tr>
+                <td><span>{{item['name']}}</span></td>
+                <td><span>{{item['price']}} $</span></td>
+                <td style="text-align: center"><span >{{item['count']}}</span></td>
+            </tr>
+        {% endfor %}
+    </table>
+    <p class="total">Total: {{total}} $</p>
+    <span>
+        <button class="btn" onclick="cancelOrder()">Cancel</button>
+        <button class="btn" onclick="sendOrder()">Confirm</button>
+    </span>
+</div>
+
+<div class = 'text-box' id="sent" style="display: none">
+    <h2>Your order has been placed successfully!</h2>
+    <p>Delicious food will be on your doorstep soon!</p>
+</div>
+<div class="text-box" id="cancel" style="display: none">
+    <h2>You're order has been deleted!</h2>
+    <p>We hope to see you soon again!</p>
+</div>
+</section>
+
+<script>
+    function cancelOrder(){
+        fetch("/clear_order", {
+            method: "DELETE",
+        })
+        .then(res => console.log("Order deleted"))
+        .catch(err => console.log(err))
+
+        let element = document.getElementById('order')
+        element.style.display = 'none'
+        document.getElementById('cancel').style.display = 'block'
+    }
+
+     function sendOrder(){
+        fetch("/clear_order", {
+            method: "DELETE",
+        })
+        .then(res => console.log("Order deleted"))
+        .catch(err => console.log(err))
+
+         let element = document.getElementById('order')
+         element.style.display = 'none'
+         document.getElementById('sent').style.display = 'block'
+    }
+
+</script>
+</body>
+</html>
